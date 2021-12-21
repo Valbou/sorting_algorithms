@@ -69,7 +69,6 @@ class Insertion(Algo):
     invert = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
-        list_size = len(to_sort)
         for k, v in enumerate(to_sort):
             j = k
             while j > 0 and to_sort[j-1] > to_sort[j]:
