@@ -51,32 +51,24 @@ class SortAlgoTest(TestCase):
 
     def test_bubble(self):
         algo = Bubble()
-        print(self.list)
         result = algo.process(copy(self.list))
-        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_counting(self):
         algo = Counting()
-        print(self.list)
         result = algo.process(copy(self.list))
-        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_insertion(self):
         algo = Insertion()
-        print(self.list)
         result = algo.process(self.list)
-        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_selection(self):
         algo = Selection()
-        print(self.list)
         result = algo.process(copy(self.list))
-        print(result)
         self.assertEqual(len(copy(self.list)), len(result))
         self._test_sort(result)

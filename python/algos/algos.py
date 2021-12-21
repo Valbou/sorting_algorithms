@@ -88,17 +88,18 @@ class Selection(Algo):
 
     def process(self, to_sort: list, stats: bool = False) -> list:
         list_size = len(to_sort)
-        for i in range(list_size):
-            mini = to_sort[i]
-            index = i
-            for j in range(list_size):
+        for k, v in enumerate(to_sort):
+            mini = v
+            index = k
+            for j in range(k, list_size):
                 if to_sort[j] <= mini:
                     mini = to_sort[j]
                     index = j
-            if index != i:
+            if index != k:
                 # Invert positions
-                to_sort[index], to_sort[i] = to_sort[i], to_sort[index]
+                to_sort[index], to_sort[k] = to_sort[k], to_sort[index]
                 self.invert += 1
+
         return to_sort
 
     def show_stats(self):
