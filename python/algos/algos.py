@@ -18,7 +18,7 @@ class Bubble(Algo):
     """
     invert = 0
 
-    def process(self, to_sort: list, stats: bool = False) -> list:
+    def process(self, to_sort: list) -> list:
         list_size = len(to_sort)
         swap = True
         fixed = 0
@@ -31,9 +31,6 @@ class Bubble(Algo):
                     self.invert += 1
                     swap = True
             fixed += 1
-
-        if stats:
-            self.show_stats()
 
         return to_sort
 
@@ -49,7 +46,7 @@ class Counting(Algo):
     moves = 0
     count_list_size = 0
 
-    def process(self, to_sort: list, stats: bool = False) -> list:
+    def process(self, to_sort: list) -> list:
         mini, count_list = self._init_list(to_sort)
 
         for n in to_sort:
@@ -61,9 +58,6 @@ class Counting(Algo):
                 to_sort[index] = k + mini
                 self.moves += 1
                 index += 1
-
-        if stats:
-            self.show_stats()
 
         return to_sort
 
@@ -85,7 +79,7 @@ class Insertion(Algo):
     """
     invert = 0
 
-    def process(self, to_sort: list, stats: bool = False) -> list:
+    def process(self, to_sort: list) -> list:
         for k, v in enumerate(to_sort):
             j = k
             while j > 0 and to_sort[j-1] > to_sort[j]:
@@ -93,9 +87,6 @@ class Insertion(Algo):
                 to_sort[j-1], to_sort[j] = to_sort[j], to_sort[j-1]
                 self.invert += 1
                 j -= 1
-
-        if stats:
-            self.show_stats()
 
         return to_sort
 
@@ -110,7 +101,7 @@ class Selection(Algo):
     """
     invert = 0
 
-    def process(self, to_sort: list, stats: bool = False) -> list:
+    def process(self, to_sort: list) -> list:
         list_size = len(to_sort)
         for k, v in enumerate(to_sort):
             mini = v
@@ -123,9 +114,6 @@ class Selection(Algo):
                 # Invert positions
                 to_sort[index], to_sort[k] = to_sort[k], to_sort[index]
                 self.invert += 1
-
-        if stats:
-            self.show_stats()
 
         return to_sort
 
