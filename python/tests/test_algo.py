@@ -45,32 +45,38 @@ class SortAlgoTest(TestCase):
             with self.subTest(f"list[{k}] = {v}"):
                 if k > 0:
                     self.assertTrue(
-                        result[k-1] >= v,
+                        result[k-1] <= v,
                         msg=f"list[{k}] = {v} is not greater than list[{k-1}] = {result[k-1]}"
                     )
 
     def test_bubble(self):
         algo = Bubble()
-        result = algo.process(copy(self.list))
         print(self.list)
+        result = algo.process(copy(self.list))
         print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_counting(self):
         algo = Counting()
-        result = algo.process(self.list)
+        print(self.list)
+        result = algo.process(copy(self.list))
+        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_insertion(self):
         algo = Insertion()
+        print(self.list)
         result = algo.process(self.list)
+        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_selection(self):
         algo = Selection()
-        result = algo.process(self.list)
-        self.assertEqual(len(self.list), len(result))
+        print(self.list)
+        result = algo.process(copy(self.list))
+        print(result)
+        self.assertEqual(len(copy(self.list)), len(result))
         self._test_sort(result)

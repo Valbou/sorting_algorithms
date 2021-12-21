@@ -21,7 +21,7 @@ class Bubble(Algo):
         while swap:
             swap = False
             for i in range(1, list_size - fixed):
-                if to_sort[i] > to_sort[i-1]:
+                if to_sort[i] < to_sort[i-1]:
                     # Invert positions
                     to_sort[i], to_sort[i-1] = to_sort[i-1], to_sort[i]
                     self.invert += 1
@@ -44,18 +44,21 @@ class Counting(Algo):
         mini, count_list = self._init_list(to_sort)
 
         for n in to_sort:
+            print(n, mini, len(count_list), "index", (n - mini))
             count_list[n - mini] += 1
+
         index = 0
         for k, v in enumerate(count_list):
             for _ in range(v):
                 to_sort[index] = k + mini
                 index += 1
+
         return to_sort
 
     def _init_list(self, to_sort: list) -> tuple:
-        mini = min(to_sort)  # Used to shift negative numbers
+        mini = min(to_sort)  # Used to shift negative numbers and optimize positive only not zero started
         maxi = max(to_sort)
-        count_list = [0 for _ in range(maxi - mini)]
+        count_list = [0 for _ in range(maxi - mini + 1)]
         return mini, count_list
 
     def show_stats(self):
