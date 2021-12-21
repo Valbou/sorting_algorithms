@@ -70,12 +70,14 @@ class Insertion(Algo):
 
     def process(self, to_sort: list, stats: bool = False) -> list:
         list_size = len(to_sort)
-        for i in range(list_size):
-            j = i
-            while j > 0 and j < list_size and to_sort[j-1] > to_sort[j]:
+        for k, v in enumerate(to_sort):
+            j = k
+            while j > 0 and to_sort[j-1] > to_sort[j]:
                 # Invert positions
                 to_sort[j-1], to_sort[j] = to_sort[j], to_sort[j-1]
                 self.invert += 1
+                j -= 1
+
         return to_sort
 
     def show_stats(self):
