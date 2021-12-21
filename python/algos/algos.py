@@ -12,6 +12,10 @@ class Algo:
 
 
 class Bubble(Algo):
+    """
+    Perf: O(n²) - O(n)
+    Mem: O(n)
+    """
     invert = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
@@ -38,6 +42,10 @@ class Bubble(Algo):
 
 
 class Counting(Algo):
+    """
+    Perf: O(n+k) - O(n+k) where k is the count_list size
+    Mem: O(n+k)
+    """
     moves = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
@@ -65,6 +73,10 @@ class Counting(Algo):
 
 
 class Insertion(Algo):
+    """
+    Perf: O(n²) - O(n)
+    Mem: O(n)
+    """
     invert = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
@@ -83,6 +95,10 @@ class Insertion(Algo):
 
 
 class Selection(Algo):
+    """
+    Perf: O(n²) - O(n)
+    Mem: O(n)
+    """
     invert = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
