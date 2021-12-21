@@ -3,6 +3,7 @@
 
 from random import randint
 from time import time
+from copy import copy
 import algos
 
 
@@ -121,7 +122,7 @@ class App:
                 print("List to sort:", to_sort)
                 bench.go()
             algo = algos.AlgoFabric.get_algo(choice)
-            result = algo.process(to_sort)
+            result = algo.process(copy(to_sort))
             if self.config.verbose:
                 bench.stop()
                 print("Sorted:", result)
