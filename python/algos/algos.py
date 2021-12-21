@@ -44,7 +44,6 @@ class Counting(Algo):
         mini, count_list = self._init_list(to_sort)
 
         for n in to_sort:
-            print(n, mini, len(count_list), "index", (n - mini))
             count_list[n - mini] += 1
 
         index = 0
