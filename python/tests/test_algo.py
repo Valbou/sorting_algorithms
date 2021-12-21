@@ -1,7 +1,8 @@
 from random import randint
+from copy import copy
 from unittest import TestCase
 
-from ..algos import (
+from python.algos import (
     Bubble,
     Counting,
     Insertion, 
@@ -44,13 +45,15 @@ class SortAlgoTest(TestCase):
             with self.subTest(f"list[{k}] = {v}"):
                 if k > 0:
                     self.assertTrue(
-                        self.list[k-1] <= v,
-                        msg=f"list[{k}] = {v} is not greater than list[{k-1}] = {self.list[k-1]}"
+                        result[k-1] >= v,
+                        msg=f"list[{k}] = {v} is not greater than list[{k-1}] = {result[k-1]}"
                     )
 
     def test_bubble(self):
         algo = Bubble()
-        result = algo.process(self.list)
+        result = algo.process(copy(self.list))
+        print(self.list)
+        print(result)
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 

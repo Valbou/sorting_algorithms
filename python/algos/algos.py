@@ -16,14 +16,17 @@ class Bubble(Algo):
 
     def process(self, to_sort: list, stats: bool = False) -> list:
         list_size = len(to_sort)
-        for _ in range(list_size):
-            index = list_size - 1
-            for j in range(list_size):
-                if to_sort[index] > to_sort[index-1] and (index - 1) > 0:
+        swap = True
+        fixed = 0
+        while swap:
+            swap = False
+            for i in range(1, list_size - fixed):
+                if to_sort[i] > to_sort[i-1]:
                     # Invert positions
-                    to_sort[index], to_sort[index-1] = to_sort[index-1], to_sort[index]
+                    to_sort[i], to_sort[i-1] = to_sort[i-1], to_sort[i]
                     self.invert += 1
-                index -= 1
+                    swap = True
+            fixed += 1
 
         if stats:
             self.show_stats()
