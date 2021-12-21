@@ -47,6 +47,7 @@ class Counting(Algo):
     Mem: O(n+k)
     """
     moves = 0
+    count_list_size = 0
 
     def process(self, to_sort: list, stats: bool = False) -> list:
         mini, count_list = self._init_list(to_sort)
@@ -58,18 +59,23 @@ class Counting(Algo):
         for k, v in enumerate(count_list):
             for _ in range(v):
                 to_sort[index] = k + mini
+                self.moves += 1
                 index += 1
+
+        if stats:
+            self.show_stats()
 
         return to_sort
 
     def _init_list(self, to_sort: list) -> tuple:
         mini = min(to_sort)  # Used to shift negative numbers and optimize positive only not zero started
         maxi = max(to_sort)
-        count_list = [0 for _ in range(maxi - mini + 1)]
+        self.count_list_size = maxi - mini + 1
+        count_list = [0 for _ in range(self.count_list_size)]
         return mini, count_list
 
     def show_stats(self):
-        print(f"Sorted in {self.moves} moves")
+        print(f"Sorted in {self.moves} moves + {self.count_list_size}")
 
 
 class Insertion(Algo):
@@ -87,6 +93,9 @@ class Insertion(Algo):
                 to_sort[j-1], to_sort[j] = to_sort[j], to_sort[j-1]
                 self.invert += 1
                 j -= 1
+
+        if stats:
+            self.show_stats()
 
         return to_sort
 
@@ -114,6 +123,9 @@ class Selection(Algo):
                 # Invert positions
                 to_sort[index], to_sort[k] = to_sort[k], to_sort[index]
                 self.invert += 1
+
+        if stats:
+            self.show_stats()
 
         return to_sort
 

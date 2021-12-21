@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from random import randint
-from python import algos
+import algos
 
 
 MINI = -100
