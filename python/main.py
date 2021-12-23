@@ -14,6 +14,12 @@ class Benchmark:
     def stop(self):
         self.end = time()
 
+    def __enter__(self):
+        self.go()
+
+    def __exit__(self):
+        self.stop()
+
     def __str__(self):
         return f"Ran in {round(self.end - self.start, 4)} seconds"
 
@@ -90,7 +96,7 @@ class App:
 
         choice = self.get_input_choice()
         state = self.treat_choice(choice)
-        if state is not None:
+        if state:
             self.menu()
 
     def get_input_choice(self) -> str:
@@ -106,12 +112,12 @@ class App:
             print(f"Selected: {result}")
         return result
 
-    def treat_choice(self, choice: str):
+    def treat_choice(self, choice: str) -> int:
         if choice in self._app_choices:
             if choice == 'exit':
                 print("Exiting...")
-                return None
-            if choice == 'config':
+                return 0
+            elif choice == 'config':
                 self.config.manual_config()
                 return 1
 
@@ -131,7 +137,7 @@ class App:
             return 1
 
         else:
-            return None
+            return 0
 
 
 if __name__ == "__main__":

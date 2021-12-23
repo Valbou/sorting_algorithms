@@ -1,6 +1,6 @@
 
 class Algo:
-    def process(self, to_sort: list, stats: bool = False) -> list:
+    def process(self, to_sort: list) -> list:
         raise NotImplementedError(
             f"Algo process method not implemented for {self.__class__.__name__}"
         )
