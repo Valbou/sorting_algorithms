@@ -1,6 +1,6 @@
 # Sorting Algorithms
 
-Some sorting algorithms for fun and to practice in several development languages
+Some sorting algorithms for fun and to practice in several development languages with clean code.
 
 Algorithms:
 [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort),
