@@ -7,8 +7,8 @@
 
     class Bubble implements Algo {
         /*
-            Perf: O(n²) - O(n)
-            Mem: O(n)
+        * Perf: O(n²) - O(n)
+        * Mem: O(n)
         */
 
         private $invert = 0;
@@ -42,8 +42,8 @@
 
     class Counting implements Algo {
         /*
-        Perf: O(n+k) - O(n+k) where k is the count_list size
-        Mem: O(n+k)
+        * Perf: O(n+k) - O(n+k) where k is the count_list size
+        * Mem: O(n+k)
         */
 
         private $moves = 0;
@@ -81,8 +81,37 @@
         }
     }
 
+    class Insertion implements Algo {
+        /*
+        * Perf: O(n²) - O(n)
+        * Mem: O(n)
+        */
+
+        private $invert = 0;
+
+        public function process(array $toSort): array {
+            foreach($toSort as $k => $v) {
+                $j = $k;
+                while($j > 0 and $toSort[$j-1] > $toSort[$j]) {
+                    // Invert positions
+                    $temp = $toSort[$j-1];
+                    $toSort[$j-1] = $toSort[$j];
+                    $toSort[$j] = $temp;
+                    ++$this->invert;
+                    --$j;
+                }
+            }
+        
+            return $toSort;
+        }
+
+        public function __toString(): string {
+            return "Sorted in {$this->invert} invert\n";
+        }
+    }
+
     class AlgoFabric {
-        private static $installed_algos = array('bubble', 'counting');
+        private static $installed_algos = array('bubble', 'counting', 'insertion');
 
         public static function getAlgo(string $choice): Algo {
             $algo = ucwords($choice);

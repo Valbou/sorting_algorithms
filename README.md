@@ -17,3 +17,4 @@ Written in CPython:
 Written in PHP:
 - Bubble Sort
 - Counting Sort
+- Insertion Sort
