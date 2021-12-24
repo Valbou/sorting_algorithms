@@ -61,14 +61,6 @@ class ConfigApp:
                 pass
         return conf
 
-    def get_bool(self, info):
-        conf = input(info)
-        if conf.lower() in ['', 'y', 'yes', '1']:
-            conf = True
-        else:
-            conf = False
-        return conf
-
 
 class App:
     _app_choices = ['exit', 'config']
