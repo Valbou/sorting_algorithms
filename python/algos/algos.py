@@ -69,7 +69,7 @@ class Counting(Algo):
         return mini, count_list
 
     def __str__(self):
-        return "Sorted in {self.moves} moves + {self.count_list_size}"
+        return f"Sorted in {self.moves} moves + {self.count_list_size}"
 
 
 class Insertion(Algo):
