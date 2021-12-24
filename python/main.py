@@ -126,7 +126,7 @@ class App:
                 algo = algos.AlgoFabric.get_algo(choice)
                 result = algo.process(copy(to_sort))
             print("Sorted:", result)
-            algo.show_stats()
+            print(algo)
             print(bench)
             return 1
 

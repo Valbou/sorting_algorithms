@@ -34,8 +34,8 @@ class Bubble(Algo):
 
         return to_sort
 
-    def show_stats(self):
-        print(f"Sorted in {self.invert} invert")
+    def __str__(self):
+        return f"Sorted in {self.invert} invert"
 
 
 class Counting(Algo):
@@ -68,8 +68,8 @@ class Counting(Algo):
         count_list = [0 for _ in range(self.count_list_size)]
         return mini, count_list
 
-    def show_stats(self):
-        print(f"Sorted in {self.moves} moves + {self.count_list_size}")
+    def __str__(self):
+        return "Sorted in {self.moves} moves + {self.count_list_size}"
 
 
 class Insertion(Algo):
@@ -90,8 +90,8 @@ class Insertion(Algo):
 
         return to_sort
 
-    def show_stats(self):
-        print(f"Sorted in {self.invert} invert")
+    def __str__(self):
+        return f"Sorted in {self.invert} invert"
 
 
 class Selection(Algo):
@@ -117,8 +117,8 @@ class Selection(Algo):
 
         return to_sort
 
-    def show_stats(self):
-        print(f"Sorted in {self.invert} invert")
+    def __str__(self):
+        return f"Sorted in {self.invert} invert"
 
 
 class AlgoFabric:
