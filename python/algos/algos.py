@@ -35,7 +35,7 @@ class Bubble(Algo):
         return to_sort
 
     def __str__(self):
-        return f"Sorted in {self.invert} invert"
+        return f"Sorted in {self.invert} inverts"
 
 
 class Counting(Algo):
@@ -91,7 +91,7 @@ class Insertion(Algo):
         return to_sort
 
     def __str__(self):
-        return f"Sorted in {self.invert} invert"
+        return f"Sorted in {self.invert} inverts"
 
 
 class Selection(Algo):
@@ -100,6 +100,7 @@ class Selection(Algo):
     Mem: O(n)
     """
     invert = 0
+    comp = 0
 
     def process(self, to_sort: list) -> list:
         list_size = len(to_sort)
@@ -110,6 +111,7 @@ class Selection(Algo):
                 if to_sort[j] <= mini:
                     mini = to_sort[j]
                     index = j
+                    self.comp += 1
             if index != k:
                 # Invert positions
                 to_sort[index], to_sort[k] = to_sort[k], to_sort[index]
@@ -118,7 +120,7 @@ class Selection(Algo):
         return to_sort
 
     def __str__(self):
-        return f"Sorted in {self.invert} invert"
+        return f"Sorted in {self.invert} inverts and {self.comp} comparisons"
 
 
 class AlgoFabric:
