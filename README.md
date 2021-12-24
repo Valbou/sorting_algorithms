@@ -18,3 +18,4 @@ Written in PHP:
 - Bubble Sort
 - Counting Sort
 - Insertion Sort
+- Selection Sort

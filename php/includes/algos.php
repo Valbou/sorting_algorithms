@@ -36,7 +36,7 @@
         }
 
         public function __toString(): string {
-            return "Sorted in {$this->invert} invert\n";
+            return "Sorted in {$this->invert} inverts\n";
         }
     }
 
@@ -47,18 +47,18 @@
         */
 
         private $moves = 0;
-        private $count_list_size = 0;
+        private $countListSize = 0;
 
         public function process(array $toSort): array {
             $mini = min($toSort);
-            $count_list = $this->initList($toSort, $mini);
+            $countList = $this->initList($toSort, $mini);
 
             foreach($toSort as $n) {
-                ++$count_list[$n - $mini];
+                ++$countList[$n - $mini];
             }
 
             $index = 0;
-            foreach($count_list as $k => $v) {
+            foreach($countList as $k => $v) {
                 for($i=0; $i<$v; ++$i) {
                     $toSort[$index] = $k + $mini;
                     ++$this->moves;
@@ -71,13 +71,13 @@
 
         private function initList(array $toSort, int $mini): array {
             $maxi = max($toSort);
-            $this->count_list_size = $maxi - $mini + 1;
-            $count_list = array_fill(0, $this->count_list_size, 0);
-            return $count_list;
+            $this->countListSize = $maxi - $mini + 1;
+            $countList = array_fill(0, $this->countListSize, 0);
+            return $countList;
         }
 
         public function __toString(): string {
-            return "Sorted in {$this->moves} moves + {$this->count_list_size}\n";
+            return "Sorted in {$this->moves} moves + {$this->countListSize}\n";
         }
     }
 
@@ -106,12 +106,50 @@
         }
 
         public function __toString(): string {
-            return "Sorted in {$this->invert} invert\n";
+            return "Sorted in {$this->invert} inverts\n";
+        }
+    }
+
+    class Selection implements Algo {
+        /*
+        * Perf: O(n²) - O(n)
+        * Mem: O(n)
+        */
+
+        private $invert = 0;
+        private $comp = 0;
+
+        public function process(array $toSort): array {
+            $listSize = count($toSort);
+            for($k=0; $k < $listSize; ++$k) {
+                $mini = $toSort[$k];
+                $index = $k;
+                foreach(range($k, $listSize-1) as $j) {
+                    if($toSort[$j] <= $mini) {
+                        $mini = $toSort[$j];
+                        $index = $j;
+                        ++$this->comp;
+                    }
+                }
+                if($index != $k) {
+                    # Invert positions
+                    $temp = $toSort[$index];
+                    $toSort[$index] = $toSort[$k];
+                    $toSort[$k] = $temp;
+                    ++$this->invert;
+                }
+            }
+
+            return $toSort;
+        }
+
+        public function __toString(): string {
+            return "Sorted in {$this->invert} inverts and {$this->comp} comparisons\n";
         }
     }
 
     class AlgoFabric {
-        private static $installed_algos = array('bubble', 'counting', 'insertion');
+        private static $installed_algos = array('bubble', 'counting', 'insertion', 'selection');
 
         public static function getAlgo(string $choice): Algo {
             $algo = ucwords($choice);
