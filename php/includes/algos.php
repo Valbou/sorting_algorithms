@@ -2,7 +2,7 @@
 
     interface Algo {
         public function process(array $toSort): array;
-        public function showStats();
+        public function __toString(): string;
     }
 
     class Bubble implements Algo {
@@ -35,8 +35,8 @@
             return $toSort;
         }
 
-        public function showStats() {
-            echo "Sorted in {$this->invert} invert\n";
+        public function __toString(): string {
+            return "Sorted in {$this->invert} invert\n";
         }
     }
 
@@ -76,8 +76,8 @@
             return $count_list;
         }
 
-        public function showStats() {
-            echo "Sorted in {$this->moves} moves + {$this->count_list_size}\n";
+        public function __toString(): string {
+            return "Sorted in {$this->moves} moves + {$this->count_list_size}\n";
         }
     }
 

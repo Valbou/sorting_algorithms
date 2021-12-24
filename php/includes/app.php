@@ -54,7 +54,7 @@
                 $bench->stop();
                 echo "\nSorted:";
                 print_r($sorted);
-                $algo->showStats();
+                echo (string) $algo;
                 echo (string) $bench;
                 return 1;
             }
