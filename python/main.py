@@ -17,7 +17,7 @@ class Benchmark:
     def __enter__(self):
         self.go()
 
-    def __exit__(self):
+    def __exit__(self, *args):
         self.stop()
 
     def __str__(self):
@@ -29,7 +29,6 @@ class ConfigApp:
     _maxi = 100
     _size = 50
     _the_list = []
-    verbose = True
 
     def get_random_list(self):
         if len(self._the_list) == 0:
@@ -42,13 +41,11 @@ class ConfigApp:
         self._mini = self.get_int("Set the min of the list:")
         self._maxi = self.get_int("Set the max of the list:")
         self._size = self.get_int("Set the size of the list:")
-        self.verbose = self.get_bool("Verbose mode (y/n):")
         print(
             "Your config:",
             f"Min: {self._mini}",
             f"Max: {self._maxi}",
             f"Size: {self._size}",
-            f"Verbose: {self.verbose}",
             sep="\n"
         )
         self._the_list = []
@@ -123,17 +120,14 @@ class App:
 
         elif choice in self._algos_choices:
             to_sort = self.config.get_random_list()
+            print("List to sort:", to_sort)
             bench = Benchmark()
-            if self.config.verbose:
-                print("List to sort:", to_sort)
-                bench.go()
-            algo = algos.AlgoFabric.get_algo(choice)
-            result = algo.process(copy(to_sort))
-            if self.config.verbose:
-                bench.stop()
-                print("Sorted:", result)
-                algo.show_stats()
-                print(bench)
+            with bench:
+                algo = algos.AlgoFabric.get_algo(choice)
+                result = algo.process(copy(to_sort))
+            print("Sorted:", result)
+            algo.show_stats()
+            print(bench)
             return 1
 
         else:
