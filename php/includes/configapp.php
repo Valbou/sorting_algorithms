@@ -4,7 +4,6 @@
         private $max = 100;
         private $size = 50;
         private $list = array();
-        public $verbose = TRUE;
 
         public function getRandomList(): array {
             if(count($this->list) == 0) {
@@ -28,14 +27,10 @@
             echo "\nSet the size of the list: ";
             trim(fscanf(STDIN, "%d", $this->size));
 
-            echo "\nVerbose mode (y/n): ";
-            trim(fscanf(STDIN, "%s", $this->verbose));
-
             echo "\nYour config:\n";
             echo "Min: {$this->min}\n";
             echo "Max: {$this->max}\n";
             echo "Size: {$this->size}\n";
-            echo "Verbose: {$this->verbose}\n";
 
             $this->list = array();
             $this->getRandomList();

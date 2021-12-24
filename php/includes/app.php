@@ -46,20 +46,16 @@
             else if(in_array($choice, $this->algo_choices)) {
                 $toSort = $this->config->getRandomList();
                 $bench = new Benchmark();
-                if($this->config->verbose) {
-                    echo "\nList to sort:";
-                    print_r($toSort);
-                    $bench->go();
-                }
+                echo "\nList to sort:";
+                print_r($toSort);
+                $bench->go();
                 $algo = AlgoFabric::getAlgo($choice);
                 $sorted = $algo->process($toSort);
-                if($this->config->verbose) {
-                    $bench->stop();
-                    echo "\nSorted:";
-                    print_r($sorted);
-                    $algo->showStats();
-                    echo (string) $bench;
-                }
+                $bench->stop();
+                echo "\nSorted:";
+                print_r($sorted);
+                $algo->showStats();
+                echo (string) $bench;
                 return 1;
             }
             return 0;
