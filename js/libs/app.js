@@ -1,3 +1,4 @@
+import { algos, getAlgo } from "./algos.js";
 
 function getRandInt(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
@@ -23,7 +24,7 @@ class Benchmark {
     }
 
     toString() {
-        return `Ran in ${(this.#end - this.#start) / 1000} seconds`;
+        return `Ran in ${(this.#end - this.#start)} ms`;
     }
 }
 
@@ -71,7 +72,7 @@ export class App {
 
     constructor() {
         this.#appChoices = ['exit', 'config'];
-        this.#algosChoices = [];
+        this.#algosChoices = Object.keys(algos);
         this.#config = new ConfigApp();
 
         console.log("############################");
@@ -133,10 +134,10 @@ export class App {
             console.log("List to sort: ", toSort);
             let bench = new Benchmark();
             bench.go();
-            let algo = AlgoFabric.getAlgo(choice);
+            let algo = getAlgo(choice);
             let result = algo.process([...toSort]);
             bench.stop(0);
-            console.log("Sorted: " + result);
+            console.log("Sorted: ", result);
             console.log(algo.toString());
             console.log(bench.toString());
             return 1;
