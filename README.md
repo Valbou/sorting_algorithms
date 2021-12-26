@@ -15,14 +15,29 @@ Written in **CPython**:
 - Insertion Sort
 - Selection Sort
 
+in python folder:
+```bash
+python3 main.py
+```
+
 Written in **PHP**:
 - Bubble Sort
 - Counting Sort
 - Insertion Sort
 - Selection Sort
 
+in php folder:
+```bash
+php main.php
+```
+
 Written in **JS** (deno):
 - Bubble Sort
 - Counting Sort
 - Insertion Sort
 - Selection Sort
+
+in js folder:
+```bash
+deno run main.js
+```
