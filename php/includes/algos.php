@@ -90,9 +90,9 @@
         private $invert = 0;
 
         public function process(array $toSort): array {
-            foreach($toSort as $k => $v) {
+            foreach($toSort as $k => $_) {
                 $j = $k;
-                while($j > 0 and $toSort[$j-1] > $toSort[$j]) {
+                while($j > 0 && $toSort[$j-1] > $toSort[$j]) {
                     // Invert positions
                     $temp = $toSort[$j-1];
                     $toSort[$j-1] = $toSort[$j];
