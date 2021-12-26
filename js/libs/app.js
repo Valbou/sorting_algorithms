@@ -6,7 +6,7 @@ function getRandInt(min, max) {
 
 async function prompt(message) {
     const buf = new Uint8Array(1024);
-    await Deno.stdout.write(new TextEncoder().encode(message + ": "));
+    await Deno.stdout.write(new TextEncoder().encode(message));
     const n = await Deno.stdin.read(buf);
     return new TextDecoder().decode(buf.subarray(0, n)).trim();
 }
@@ -44,9 +44,9 @@ class ConfigApp {
     async manualConfig() {
         console.log("#### Configuration ####");
         console.log("Min, max and size must be integers");
-        this.#mini = await this.getInt("Set the min of the list");
-        this.#maxi = await this.getInt("Set the max of the list");
-        this.#size = await this.getInt("Set the size of the list");
+        this.#mini = await this.getInt("Set the min of the list:");
+        this.#maxi = await this.getInt("Set the max of the list:");
+        this.#size = await this.getInt("Set the size of the list:");
         console.log("Your config:");
         console.log(`Min: ${this.#mini}`);
         console.log(`Max: ${this.#maxi}`);
@@ -99,7 +99,7 @@ export class App {
     }
 
     async getInputChoice() {
-        let choice = await prompt('Your choice');
+        let choice = await prompt('Your choice:');
         let result = "";
 
         let ichoice = parseInt(choice);

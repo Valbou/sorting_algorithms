@@ -24,3 +24,5 @@ Written in **PHP**:
 Written in **JS** (deno):
 - Bubble Sort
 - Counting Sort
+- Insertion Sort
+- Selection Sort
