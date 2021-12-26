@@ -80,7 +80,7 @@ class Insertion(Algo):
     invert = 0
 
     def process(self, to_sort: list) -> list:
-        for k, v in enumerate(to_sort):
+        for k, _ in enumerate(to_sort):
             j = k
             while j > 0 and to_sort[j-1] > to_sort[j]:
                 # Invert positions
