@@ -8,19 +8,19 @@ import algos
 
 
 class Benchmark:
-    def go(self):
+    def go(self) -> None:
         self.start = time()
 
-    def stop(self):
+    def stop(self) -> None:
         self.end = time()
 
-    def __enter__(self):
+    def __enter__(self) -> None:
         self.go()
 
-    def __exit__(self, *args):
+    def __exit__(self, *args) -> None:
         self.stop()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Ran in {round(self.end - self.start, 4)} seconds"
 
 
@@ -30,12 +30,12 @@ class ConfigApp:
     _size = 50
     _the_list = []
 
-    def get_random_list(self):
+    def get_random_list(self) -> list:
         if len(self._the_list) == 0:
             self._the_list = [randint(self._mini, self._maxi) for _ in range(self._size)]
         return self._the_list
 
-    def manual_config(self):
+    def manual_config(self) -> None:
         print("#"*4, "Configuration", "#"*4)
         print("Min, max and size must be integers")
         self._mini = self.get_int("Set the min of the list:")
@@ -51,7 +51,7 @@ class ConfigApp:
         self._the_list = []
         self.get_random_list()
 
-    def get_int(self, info):
+    def get_int(self, info) -> int:
         conf = None
         while not isinstance(conf, int):
             conf = input(info)
@@ -78,7 +78,7 @@ class App:
             pass
         print("#"*24)
 
-    def menu(self):
+    def menu(self) -> None:
         print("Choose an algo to sort your list (by number or name) :")
         for i, name in enumerate(self._app_choices + self._algos_choices):
             print(f" {i}: {name.capitalize()}")
