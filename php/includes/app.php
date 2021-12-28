@@ -19,7 +19,7 @@
             echo "#######################\n";
         }
 
-        public function menu() {
+        public function menu(): bool {
             echo "\nChoose an algo to sort your list (by number or name) :\n";
             $choices = array_merge($this->app_choices, $this->algo_choices);
             foreach($choices as $key => $option) {
@@ -29,15 +29,15 @@
             return $this->treatChoice($choice);
         }
 
-        public function treatChoice(string $choice): int {
+        public function treatChoice(string $choice): bool {
             if(in_array($choice, $this->app_choices)) {
                 switch($choice) {
                     case 'exit':
                         echo "Exiting...";
-                        return 0;
+                        return FALSE;
                     case 'config':
                         $this->config->manualConfig();
-                        return 1;
+                        return TRUE;
                 }
             }
             else if(in_array($choice, $this->algo_choices)) {
@@ -53,9 +53,9 @@
                 print_r($sorted);
                 echo (string) $algo;
                 echo (string) $bench;
-                return 1;
+                return TRUE;
             }
-            return 0;
+            return FALSE;
         }
 
         public function getInputChoice(): string {
