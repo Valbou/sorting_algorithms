@@ -118,11 +118,11 @@ export class App {
         if(this.#appChoices.indexOf(choice) >= 0) {
             if(choice === 'exit') {
                 console.log("Exiting...");
-                return 0;
+                return false;
             }
             else if(choice === 'config') {
                 await this.#config.manualConfig();
-                return 1;
+                return true;
             }
         }
 
@@ -137,8 +137,8 @@ export class App {
             console.log("Sorted: ", result);
             console.log(algo.toString());
             console.log(bench.toString());
-            return 1;
+            return true;
         }
-        return 0;
+        return false;
     }
 }
