@@ -78,15 +78,13 @@ class App:
             pass
         print("#"*24)
 
-    def menu(self) -> None:
+    def menu(self) -> int:
         print("Choose an algo to sort your list (by number or name) :")
         for i, name in enumerate(self._app_choices + self._algos_choices):
             print(f" {i}: {name.capitalize()}")
 
         choice = self.get_input_choice()
-        state = self.treat_choice(choice)
-        if state:
-            self.menu()
+        return self.treat_choice(choice)
 
     def get_input_choice(self) -> str:
         choice = input('Your choice :')
