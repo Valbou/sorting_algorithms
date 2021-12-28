@@ -92,10 +92,7 @@ export class App {
         choices.forEach((el, i) => console.log(` ${i}: ${el.toLowerCase()}`));
 
         let choice = await this.getInputChoice();
-        let state = await this.treatChoice(choice);
-        if(state) {
-            this.menu();
-        }
+        return await this.treatChoice(choice);
     }
 
     async getInputChoice() {
