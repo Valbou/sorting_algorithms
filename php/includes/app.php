@@ -26,10 +26,7 @@
                 echo "{$key}: ". ucwords($option) ."\n";
             }
             $choice = $this->getInputChoice();
-            $state = $this->treatChoice($choice);
-            if($state) {
-                $this->menu();
-            }
+            return $this->treatChoice($choice);
         }
 
         public function treatChoice(string $choice): int {
