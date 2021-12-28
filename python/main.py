@@ -78,7 +78,7 @@ class App:
             pass
         print("#"*24)
 
-    def menu(self) -> int:
+    def menu(self) -> bool:
         print("Choose an algo to sort your list (by number or name) :")
         for i, name in enumerate(self._app_choices + self._algos_choices):
             print(f" {i}: {name.capitalize()}")
@@ -99,14 +99,14 @@ class App:
             print(f"Selected: {result}")
         return result
 
-    def treat_choice(self, choice: str) -> int:
+    def treat_choice(self, choice: str) -> bool:
         if choice in self._app_choices:
             if choice == 'exit':
                 print("Exiting...")
-                return 0
+                return False
             elif choice == 'config':
                 self.config.manual_config()
-                return 1
+                return True
 
         elif choice in self._algos_choices:
             to_sort = self.config.get_random_list()
@@ -118,10 +118,10 @@ class App:
             print("Sorted:", result)
             print(algo)
             print(bench)
-            return 1
+            return True
 
         else:
-            return 0
+            return False
 
 
 if __name__ == "__main__":
