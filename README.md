@@ -41,3 +41,15 @@ in js folder:
 ```bash
 deno run main.js
 ```
+
+Written in **C++**:
+- Bubble Sort
+- Counting Sort
+- Insertion Sort
+- Selection Sort
+
+in c++ folder:
+```bash
+g++ main.cpp ui/app.cpp algos/algos.cpp -o sortalgo
+./sortalgo
+```
