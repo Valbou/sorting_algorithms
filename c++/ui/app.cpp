@@ -30,7 +30,7 @@ void Benchmark::stop() {
 }
 
 string Benchmark::toString() {
-    return string("Ran in " + to_string(this->end - this->start) + " µseconds");
+    return string("Ran in " + to_string((this->end - this->start) / 1000000.0) + " seconds");
 }
 
 
