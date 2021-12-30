@@ -17,7 +17,7 @@ Written in **CPython**:
 
 in python folder:
 ```bash
-python3 main.py
+$ python3 main.py
 ```
 
 Written in **PHP**:
@@ -28,7 +28,7 @@ Written in **PHP**:
 
 in php folder:
 ```bash
-php main.php
+$ php main.php
 ```
 
 Written in **JS** (deno):
@@ -39,7 +39,7 @@ Written in **JS** (deno):
 
 in js folder:
 ```bash
-deno run main.js
+$ deno run main.js
 ```
 
 Written in **C++**:
@@ -50,6 +50,6 @@ Written in **C++**:
 
 in c++ folder:
 ```bash
-g++ main.cpp ui/app.cpp algos/algos.cpp -o sortalgo
-./sortalgo
+$ g++ main.cpp ui/app.cpp algos/algos.cpp -o sortalgo
+$ ./sortalgo
 ```
