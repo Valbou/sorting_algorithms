@@ -12,7 +12,26 @@
 
     impl Algo for Bubble {
         fn process(&mut self, list:&mut Vec<isize>){
-            //
+            // Perf: O(n²) - O(n)
+            // Mem: O(n)
+
+            let size = list.len();
+            let mut fixed :usize = 0;
+            let mut swap :bool = true;
+
+            while swap {
+                swap = false;
+                for i in 1..(size - fixed) {
+                    if list[i] < list[i-1] {
+                        let temp = list[i];
+                        list[i] = list[i-1];
+                        list[i-1] = temp;
+                        self.invert+=1;
+                        swap = true;
+                    }
+                }
+                fixed+=1;
+            }
         }
     }
 
@@ -29,7 +48,26 @@
 
     impl Algo for Counting {
         fn process(&mut self, list:&mut Vec<isize>){
-            //
+            // Perf: O(n+k) - O(n+k) where k is the count_list size
+            // Mem: O(n+k)
+
+            let min = *list.iter().min().unwrap();
+            let max = *list.iter().max().unwrap();
+            self.count_list_size = (max - min).abs() as usize + 1_usize;
+            let mut vec_counting :Vec<isize> = vec![0; self.count_list_size];
+
+            for i in 0..list.len() {
+                vec_counting[(list[i] - min).abs() as usize] += 1;
+            }
+
+            let mut index :usize = 0;
+            for i in 0..vec_counting.len() {
+                for j in 0..vec_counting[i] {
+                    list[index] = i as isize + min;
+                    self.moves += 1;
+                    index += 1;
+                }
+            }
         }
     }
 
@@ -45,7 +83,8 @@
 
     impl Algo for Insertion {
         fn process(&mut self, list:&mut Vec<isize>){
-            //
+            // Perf: O(n²) - O(n)
+            // Mem: O(n)
         }
     }
 
@@ -62,7 +101,8 @@
 
     impl Algo for Selection {
         fn process(&mut self, list:&mut Vec<isize>){
-            //
+            // Perf: O(n²) - O(n)
+            // Mem: O(n)
         }
     }
 
