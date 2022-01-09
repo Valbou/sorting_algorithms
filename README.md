@@ -53,3 +53,15 @@ in c++ folder:
 $ g++ main.cpp ui/app.cpp algos/algos.cpp -o sortalgo
 $ ./sortalgo
 ```
+
+Written in **Rust**:
+- Bubble Sort
+- Counting Sort
+- Insertion Sort
+- Selection Sort
+
+in rust folder:
+```bash
+$ cargo build --release
+$ ./target/release/sortalgo
+```

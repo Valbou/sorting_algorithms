@@ -62,7 +62,7 @@
 
             let mut index :usize = 0;
             for i in 0..vec_counting.len() {
-                for j in 0..vec_counting[i] {
+                for _ in 0..vec_counting[i] {
                     list[index] = i as isize + min;
                     self.moves += 1;
                     index += 1;
@@ -85,6 +85,18 @@
         fn process(&mut self, list:&mut Vec<isize>){
             // Perf: O(n²) - O(n)
             // Mem: O(n)
+
+            let mut j :usize;
+            for i in 0..list.len() {
+                j = i;
+                while j > 0 && list[j-1] > list[j] {
+                    let temp = list[j-1];
+                    list[j-1] = list[j];
+                    list[j] = temp;
+                    self.invert += 1;
+                    j -= 1;
+                }
+            }
         }
     }
 
@@ -103,6 +115,27 @@
         fn process(&mut self, list:&mut Vec<isize>){
             // Perf: O(n²) - O(n)
             // Mem: O(n)
+
+            let size :usize = list.len();
+            let mut min :isize;
+            let mut index :usize;
+            for i in 0..size {
+                min = list[i];
+                index = i;
+                for j in i..size {
+                    if list[j] <= min {
+                        min = list[j];
+                        index = j;
+                        self.comp += 1;
+                    }
+                }
+                if index != i {
+                    let temp = list[index];
+                    list[index] = list[i];
+                    list[i] = temp;
+                    self.invert += 1;
+                }
+            }
         }
     }
 
