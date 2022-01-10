@@ -109,12 +109,12 @@ class App:
                 return True
 
         elif choice in self._algos_choices:
-            to_sort = self.config.get_random_list()
+            to_sort = copy(self.config.get_random_list())
             print("List to sort:", to_sort)
+            algo = algos.AlgoFabric.get_algo(choice)
             bench = Benchmark()
             with bench:
-                algo = algos.AlgoFabric.get_algo(choice)
-                result = algo.process(copy(to_sort))
+                result = algo.process(to_sort)
             print("Sorted:", result)
             print(algo)
             print(bench)
