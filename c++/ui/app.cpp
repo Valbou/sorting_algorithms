@@ -144,13 +144,13 @@ bool App::treatChoice(string choice) {
     if(it != this->algos_choices.end()) {
         vector<int> list = this->config->getRandomList();
         Benchmark bench;
+        auto *algo = this->fabric->getInstance(choice);
 
         cout << "List to sort:" << '\n';
         this->showList(list);
         cout << '\n';
 
         bench.go();
-        auto *algo = this->fabric->getInstance(choice);
         algo->process(list);
         bench.stop();
 
