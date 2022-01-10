@@ -43,10 +43,10 @@
             else if(in_array($choice, $this->algo_choices)) {
                 $toSort = $this->config->getRandomList();
                 $bench = new Benchmark();
+                $algo = AlgoFabric::getAlgo($choice);
                 echo "\nList to sort:";
                 print_r($toSort);
                 $bench->go();
-                $algo = AlgoFabric::getAlgo($choice);
                 $sorted = $algo->process($toSort);
                 $bench->stop();
                 echo "\nSorted:";
