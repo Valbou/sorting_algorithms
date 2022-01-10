@@ -76,6 +76,8 @@ App::App() {
     this->config = new ConfigApp();
     this->fabric = new AlgoFabric();
     this->algos_choices = this->fabric->getChoices();
+
+    cout << "#######################\n# Valbou - Sort Algos #\n#  Version 1.0 (C++)  #\n#######################\n" << endl;
 }
 
 App::~App() {
