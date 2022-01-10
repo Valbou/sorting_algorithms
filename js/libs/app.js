@@ -127,12 +127,12 @@ export class App {
         }
 
         else if(this.#algosChoices.indexOf(choice) >= 0) {
-            let toSort = this.#config.getRandomList();
-            console.log("List to sort: ", toSort);
+            let toSort = [...this.#config.getRandomList()];
             let bench = new Benchmark();
-            bench.go();
             let algo = getAlgo(choice);
-            let result = algo.process([...toSort]);
+            console.log("List to sort: ", toSort);
+            bench.go();
+            let result = algo.process(toSort);
             bench.stop(0);
             console.log("Sorted: ", result);
             console.log(algo.toString());
