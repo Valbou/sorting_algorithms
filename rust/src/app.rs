@@ -74,6 +74,9 @@ struct ConfigApp {
 
 impl ConfigApp {
     fn new() -> ConfigApp {
+        let ht = "#".repeat(24_usize);
+        println!("{}\n#  Valbou - Sort Algos #\n#  Version 1.0 (Rust)  #\n{}\n", ht, ht);
+
         ConfigApp{min:-100, max:100, size:50, list:Vec::with_capacity(50_usize)}
     }
 
