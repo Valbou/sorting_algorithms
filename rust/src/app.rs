@@ -5,8 +5,7 @@ mod algos;
 use std::time::Instant;
 use std::fmt;
 use std::io;
-use rand::prelude::*;
-use algos::AlgoFabric;
+use algos::{ AlgoFabric, gen_random_values };
 
 
 fn get_integer(info:&str) -> isize {
@@ -82,8 +81,7 @@ impl ConfigApp {
 
     fn get_random_list(&mut self) -> Vec<isize> {
         if self.list.len() == 0 {
-            let mut rng = thread_rng();
-            self.list = (0..self.size).map(|_| rng.gen_range(self.min..self.max)).collect();
+            self.list = gen_random_values(self.size, self.min, self.max);
         }
 
         self.list.to_vec()
