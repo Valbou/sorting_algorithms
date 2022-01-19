@@ -14,6 +14,7 @@ Written in **CPython**:
 - Counting Sort
 - Insertion Sort
 - Selection Sort
+- Tree Sort
 
 in python folder:
 ```bash
