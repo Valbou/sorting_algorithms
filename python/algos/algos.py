@@ -123,8 +123,90 @@ class Selection(Algo):
         return f"Sorted in {self.invert} inverts and {self.comp} comparisons"
 
 
+class Node:
+    left = None
+    right = None
+    value = None
+    multi = 0
+
+    def __init__(self, value:int):
+        self.left = None
+        self.right = None
+        self.value = value
+        self.multi = 1
+
+    def add_child(self, node) -> None:
+        if node.value == self.value:
+            self.multi += 1
+        elif node.value < self.value:
+            if self.left is None:
+                self.left = node
+            else:
+                self.left.add_child(node)
+        else:
+            if self.right is None:
+                self.right = node
+            else:
+                self.right.add_child(node)
+
+    def auto_pruning(self):
+        if self.left.right is not None:
+            self.left = self.left.right
+        else:
+            self.left = None
+
+    def get_min(self):
+        multi = 0
+        value = None
+        if self.left is not None:
+            value, multi, me = self.left.get_min()
+            if me:  # Auto pruning
+                self.auto_pruning()
+                me = False
+
+        elif self.left is None and self.multi > 0:
+            multi = self.multi
+            value = self.value
+            me = True
+
+        return value, multi, me
+
+    def __str__(self) -> str:
+        return f"Node {self.value} ({self.multi}) L{0 if self.left is None else 1} - R{0 if self.right is None else 1}"
+
+
+class Tree(Algo):
+    """
+    Perf: O(n²) - O(n log n)
+    Mem: O(n)
+    """
+    nodes = 0
+
+    def process(self, to_sort: list) -> list:
+        root = Node(to_sort.pop())
+        for _ in range(len(to_sort)):
+            root.add_child(Node(to_sort.pop()))
+
+        to_sort.clear()
+        while res := root.get_min():
+            num, multi, me = res
+            for _ in range(multi):
+                to_sort.append(num)
+            self.nodes += 1
+
+            if me:
+                if root.right is not None:
+                    root = root.right
+                else:
+                    break
+        return to_sort
+
+    def __str__(self):
+        return f"Sorted with {self.nodes} nodes"
+
+
 class AlgoFabric:
-    installed_algos = [Bubble, Counting, Insertion, Selection]
+    installed_algos = [Bubble, Counting, Insertion, Selection, Tree]
 
     @classmethod
     def get_algo(cls, choice: str) -> Algo:

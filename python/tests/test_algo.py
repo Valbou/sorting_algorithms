@@ -7,6 +7,7 @@ from python.algos import (
     Counting,
     Insertion, 
     Selection,
+    Tree,
     Algo,
     AlgoFabric
 )
@@ -63,12 +64,20 @@ class SortAlgoTest(TestCase):
 
     def test_insertion(self):
         algo = Insertion()
-        result = algo.process(self.list)
+        result = algo.process(copy(self.list))
         self.assertEqual(len(self.list), len(result))
         self._test_sort(result)
 
     def test_selection(self):
         algo = Selection()
         result = algo.process(copy(self.list))
+        self.assertEqual(len(copy(self.list)), len(result))
+        self._test_sort(result)
+
+    def test_tree(self):
+        algo = Tree()
+        print(self.list)
+        result = algo.process(copy(self.list))
+        print(result)
         self.assertEqual(len(copy(self.list)), len(result))
         self._test_sort(result)
