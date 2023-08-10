@@ -1,5 +1,7 @@
 # Sorting Algorithms
 
+[![CodeFactor](https://www.codefactor.io/repository/github/valbou/sorting_algorithms/badge)](https://www.codefactor.io/repository/github/valbou/sorting_algorithms)
+
 Some sorting algorithms for fun and to practice in several development languages with clean code.
 
 ## Algorithms:
